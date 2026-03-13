@@ -58,12 +58,12 @@ export default function Orders() {
           <table className="min-w-full divide-y divide-white/10">
             <thead className="bg-white/5">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-bold text-ink-200 uppercase tracking-wider">ID / Date</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-ink-200 uppercase tracking-wider">Customer</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-ink-200 uppercase tracking-wider">Items</th>
-                <th className="px-6 py-4 text-right text-xs font-bold text-ink-200 uppercase tracking-wider">Total</th>
-                <th className="px-6 py-4 text-center text-xs font-bold text-ink-200 uppercase tracking-wider">Status</th>
-                {isAdmin && <th className="px-6 py-4 text-center text-xs font-bold text-ink-200 uppercase tracking-wider">Action</th>}
+                <th className="px-4 py-4 md:px-6 text-left text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">ID/Date</th>
+                <th className="px-4 py-4 md:px-6 text-left text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">Customer</th>
+                <th className="px-4 py-4 md:px-6 text-left text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">Items</th>
+                <th className="px-4 py-4 md:px-6 text-right text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">Total</th>
+                <th className="px-4 py-4 md:px-6 text-center text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">Status</th>
+                {isAdmin && <th className="px-4 py-4 md:px-6 text-center text-xs md:text-sm font-bold text-ink-200 uppercase tracking-wider">Action</th>}
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -73,11 +73,11 @@ export default function Orders() {
                     <div className="font-mono text-sm font-bold text-white/90">{order._id?.slice(0, 8)}...</div>
                     <div className="text-xs text-ink-300 mt-1">{new Date(order.createdAt).toLocaleString()}</div>
                   </td>
-                  <td className="px-6 py-4">
-                    <div>
-                      <div className="font-medium text-white">{order.user?.name || order.customerInfo?.name || 'Guest'}</div>
-                      <div className="text-sm text-ink-300">{order.user?.email || order.customerInfo?.email}</div>
-                      <div className="text-xs text-ink-400">{order.customerInfo?.phone}</div>
+                  <td className="px-6 py-6 md:px-4">
+                    <div className="space-y-1">
+                      <div className="font-bold text-white text-base md:text-sm">{order.user?.name || order.customerInfo?.name || 'Guest'}</div>
+                      <div className="text-ink-300 md:text-sm">{order.user?.email || order.customerInfo?.email}</div>
+                      <div className="text-xs font-mono text-ink-400 bg-ink-900/50 px-2 py-1 rounded">{order.user?.phone || order.customerInfo?.phone}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -88,7 +88,7 @@ export default function Orders() {
                             <img 
                               src={item.product.images[0]} 
                               alt="" 
-                              className="w-8 h-8 rounded object-cover bg-white/10 border border-white/20" 
+                              className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-lg object-cover bg-white/20 border border-white/30 shadow-md flex-shrink-0" 
                             />
                           )}
                           <span>{item.name} ({item.quantity}x)</span>

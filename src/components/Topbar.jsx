@@ -15,9 +15,11 @@ export default function Topbar({ title, subtitle, onMenuClick }) {
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <div className="flex items-center gap-3">
-        <button onClick={onMenuClick} className="p-1 -ml-1 text-ink-200 hover:text-white lg:hidden">
-          <Menu size={24} />
-        </button>
+        {onMenuClick && (
+          <button onClick={onMenuClick} className="p-1 -ml-1 text-ink-200 hover:text-white lg:hidden">
+            <Menu size={24} />
+          </button>
+        )}
         <div className="flex flex-col">
           <h2 className="text-lg font-bold text-white tracking-tight">{title || "SpareParts"}</h2>
           {subtitle && <p className="text-xs text-ink-400">{subtitle}</p>}

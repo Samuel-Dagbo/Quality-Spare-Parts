@@ -1,4 +1,4 @@
-﻿import { ShoppingCart } from "lucide-react";
+﻿﻿import { ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product }) {
   return (
@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
       <div className="mt-4 flex items-center justify-between">
         <div>
           <p className="text-sm text-ink-200/70">{product.brand}</p>
-          <p className="text-xl font-semibold text-white">${product.price}</p>
+          <p className="text-xl font-semibold text-white">₵{product.price}</p>
         </div>
         <button className="flex items-center gap-2 rounded-2xl bg-ember-500 px-4 py-2 text-sm font-semibold text-ink-950 hover:bg-ember-400 transition">
           <ShoppingCart size={16} />

@@ -36,7 +36,7 @@ export default function SalesTable({ data, type = "staff" }) {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="font-semibold text-emerald-400">
-                    ${typeof row.revenue === 'number' ? row.revenue.toFixed(0) : row.revenue?.toFixed(0) || '0'}
+                    ₵{typeof row.revenue === 'number' ? row.revenue.toFixed(0) : row.revenue?.toFixed(0) || '0'}
                   </div>
                 </td>
               </tr>
@@ -47,4 +47,3 @@ export default function SalesTable({ data, type = "staff" }) {
     </div>
   );
 }
-

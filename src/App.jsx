@@ -1,4 +1,5 @@
-﻿﻿import { Routes, Route, Navigate } from "react-router-dom";
+﻿import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import RequireAuth from "./components/RequireAuth";
@@ -45,16 +46,28 @@ const RoleRedirect = () => {
 };
 
 const LayoutShell = ({ sidebar, children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-ink-950 text-ink-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.18),_transparent_55%),radial-gradient(circle_at_20%_30%,_rgba(250,204,21,0.16),_transparent_45%),radial-gradient(circle_at_80%_10%,_rgba(249,115,22,0.18),_transparent_45%)]"></div>
       <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-sun-500/20 blur-3xl animate-floaty"></div>
       <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-aqua-500/20 blur-3xl animate-floaty"></div>
 
-      {sidebar}
+      {sidebar && React.cloneElement(sidebar, {
+        isOpen: isSidebarOpen,
+        onClose: () => setIsSidebarOpen(false)
+      })}
+
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
       <div className="sticky top-0 z-40 lg:hidden bg-ink-950/95 backdrop-blur-xl border-b border-white/10">
-        <Topbar title="" subtitle="" />
+        <Topbar title="" subtitle="" onMenuClick={() => setIsSidebarOpen(true)} />
       </div>
       <main className={`relative z-10 px-6 py-4 lg:py-10 space-y-10 pt-20 lg:pt-0 ${sidebar ? "lg:ml-72" : ""}`}>
         <div className="mx-auto max-w-6xl space-y-10">{children}</div>

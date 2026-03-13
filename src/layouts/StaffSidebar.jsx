@@ -1,5 +1,5 @@
 ﻿﻿import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Warehouse, ShoppingCart, Boxes, ClipboardList, Receipt } from "lucide-react";
+import { LayoutDashboard, Warehouse, ShoppingCart, Boxes, ClipboardList, Receipt, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 const navItems = [
@@ -11,19 +11,24 @@ const navItems = [
   { to: "/staff/adjustments", label: "Adjustments", icon: ClipboardList }
 ];
 
-export default function StaffSidebar() {
+export default function StaffSidebar({ isOpen, onClose }) {
   const { user, logout } = useAuth();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 w-72 bg-ink-900/95 border-r border-white/10 backdrop-blur-xl lg:translate-x-0 transform -translate-x-full transition-transform duration-300 ease-in-out">
-      <div className="flex items-center gap-3 p-6 border-b border-white/10">
-        <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-aqua-500 via-sun-500 to-lime-500 flex items-center justify-center shadow-card">
-          <span className="font-mono text-ink-950 text-sm">ST</span>
+    <aside className={`fixed inset-y-0 left-0 z-50 w-72 bg-ink-900/95 border-r border-white/10 backdrop-blur-xl lg:translate-x-0 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-aqua-500 via-sun-500 to-lime-500 flex items-center justify-center shadow-card">
+            <span className="font-mono text-ink-950 text-sm">ST</span>
+          </div>
+          <div>
+            <p className="text-lg font-semibold">Staff Hub</p>
+            <p className="text-xs text-ink-200/70">Operations</p>
+          </div>
         </div>
-        <div>
-          <p className="text-lg font-semibold">Staff Hub</p>
-          <p className="text-xs text-ink-200/70">Operations</p>
-        </div>
+        <button onClick={onClose} className="lg:hidden text-ink-400 hover:text-white">
+          <X size={20} />
+        </button>
       </div>
 
       <nav className="mt-10 flex flex-col gap-2">
@@ -33,6 +38,7 @@ export default function StaffSidebar() {
             <NavLink
               key={item.to}
               to={item.to}
+              onClick={onClose}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm transition ${
                   isActive

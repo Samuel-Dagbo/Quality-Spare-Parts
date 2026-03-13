@@ -1,4 +1,4 @@
-﻿import { NavLink } from "react-router-dom";
+﻿﻿import { NavLink } from "react-router-dom";
 import { LayoutDashboard, Warehouse, ShoppingCart, Boxes, ClipboardList, Receipt } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
@@ -15,7 +15,7 @@ export default function StaffSidebar() {
   const { user, logout } = useAuth();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 w-72 bg-ink-900/95 border-r border-white/10 backdrop-blur-xl lg:static lg:translate-x-0 lg:z-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+    <aside className="fixed inset-y-0 left-0 z-50 w-72 bg-ink-900/95 border-r border-white/10 backdrop-blur-xl lg:translate-x-0 transform -translate-x-full transition-transform duration-300 ease-in-out">
       <div className="flex items-center gap-3 p-6 border-b border-white/10">
         <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-aqua-500 via-sun-500 to-lime-500 flex items-center justify-center shadow-card">
           <span className="font-mono text-ink-950 text-sm">ST</span>

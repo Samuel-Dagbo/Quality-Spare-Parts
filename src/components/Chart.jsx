@@ -10,7 +10,7 @@ export default function Chart({ type, data, height = 300 }) {
           <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" strokeOpacity={0.3} />
             <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} />
-            <YAxis tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} />
+            <YAxis tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} tickFormatter={(val) => data[0]?.revenue ? `₵${val}` : val} />
             <Tooltip 
               contentStyle={{ 
                 backgroundColor: 'rgb(17 24 39)', 
@@ -18,6 +18,7 @@ export default function Chart({ type, data, height = 300 }) {
                 borderRadius: '12px',
                 color: 'white'
               }}
+              formatter={(value, name) => [name === "Revenue" ? `₵${value}` : value, name]}
             />
             <Legend />
             {data[0]?.revenue && <Bar dataKey="revenue" fill="#10b981" name="Revenue" radius={[4, 4, 0, 0]} />}
@@ -53,8 +54,8 @@ export default function Chart({ type, data, height = 300 }) {
           <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" strokeOpacity={0.3} />
             <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} />
-            <YAxis tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} />
-            <Tooltip />
+            <YAxis tickLine={false} tick={{ fontSize: 12, fill: 'rgb(156 163 175)' }} tickFormatter={(val) => `₵${val}`} />
+            <Tooltip formatter={(value) => [`₵${value}`, "Revenue"]} contentStyle={{ backgroundColor: 'rgb(17 24 39)', border: '1px solid rgb(51 65 85)', borderRadius: '12px', color: 'white' }} />
             <Line type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', strokeWidth: 2 }} activeDot={{ r: 6 }} />
           </LineChart>
         </ResponsiveContainer>
@@ -63,4 +64,3 @@ export default function Chart({ type, data, height = 300 }) {
       return null;
   }
 }
-

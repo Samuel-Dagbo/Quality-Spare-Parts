@@ -1,4 +1,4 @@
-﻿import { Routes, Route, Navigate } from "react-router-dom";
+﻿﻿import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import RequireAuth from "./components/RequireAuth";
@@ -30,6 +30,7 @@ import UsersAdmin from "./pages/UsersAdmin";
 import Analytics from "./pages/Analytics";
 import Sales from "./pages/Sales";
 import StaffPOS from "./pages/StaffPOS";
+import Topbar from "./components/Topbar";
 
 const roleHome = (role) => {
   if (role === "admin") return "/admin";

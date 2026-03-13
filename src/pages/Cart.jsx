@@ -1,4 +1,4 @@
-﻿import { Topbar } from "../components/Topbar";
+﻿import Topbar from "../components/Topbar";
 import Button from "../components/Button";
 import { useCart } from "../context/CartContext";
 import { formatCedis } from "../lib/currency";
